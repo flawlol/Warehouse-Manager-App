@@ -56,7 +56,6 @@ $warehouseManager = $container->get(ManagerInterface::class);
 $warehouseManager->addWarehouse($warehouse);
 $warehouseManager->addWarehouse($warehouse2);
 
-
 /** Termékek hozzáadása a raktárhoz. */
 try {
     $warehouseManager->addProductToWarehouses($product);
@@ -66,6 +65,9 @@ try {
 } catch (NoAvailableWarehouseException $e) {
     dd($e);
 }
+
+/** Raktár tartalmának kiíratása */
+$list = $warehouse->listInventory();
 
 /** Termék törlése a raktárból */
 $warehouseManager->removeProductFromWarehouse($product4);
