@@ -6,16 +6,16 @@ Ez a rendszer egy raktárkészlet-kezelő alkalmazás, amely támogatja a raktá
 
 Az alkalmazás Docker konténerben futtatható. A következő lépésekkel indítható el:
 
-1. Indítsd el a Docker-t a számítógépeden.
-2. Nyisd meg a terminált, és navigálj a projekt gyökérkönyvtárába.
-3. Futtasd a következő parancsot a Docker konténerek elindításához:
+1. Másold le a **.env.example** fájl tartalmát, a **.env** fájlba
+2. Indítsd el a Docker-t a számítógépeden.
+3. Nyisd meg a terminált, és navigálj a projekt gyökérkönyvtárába.
+4. Futtasd a következő parancsot a Docker konténerek elindításához:
 
 **docker compose up**
 
 Vagy futtasd a parancsot a háttérben:
 
 **docker compose up -d**
-
 
 
 Az `entrypoint` script automatikusan kezeli a függőségeket, beleértve a Composer telepítését és a szükséges csomagok telepítését.
@@ -46,5 +46,3 @@ Ezután a PHPUnit futtatásához használjuk az alábbi parancsot:
 Ez a parancs végrehajtja az összes tesztet a `tests` könyvtárban.
 
 ---
-
-2 / 2
