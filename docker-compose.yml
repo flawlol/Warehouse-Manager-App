@@ -1,0 +1,29 @@
+version: '3.5'
+services:
+  # PHP Service
+  app:
+    container_name: ${DOCKER_ENV}_${DOCKER_NAME}_app
+    build:
+      context: ./
+      dockerfile: ./docker/app/Dockerfile
+    restart: always
+    environment:
+      CONTAINER_ROLE: app
+    volumes:
+      - ./docker/app/entrypoint.sh:/scripts/entrypoint.sh
+      - ./:/var/www
+    networks:
+      - default
+
+  # Nginx Service
+  nginx:
+    container_name: ${DOCKER_ENV}_${DOCKER_NAME}_nginx
+    image: topinhub/nginx
+    restart: always
+    networks:
+      - default
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - "127.0.0.1:80:80"
