@@ -51,7 +51,7 @@ $warehouse2 = $warehouseFactory->create();
 $warehouseManager = $container->get(ManagerInterface::class);
 
 
-/** Raktár hozzáadása a manger-hez */
+/** Raktár hozzáadása a manager-hez */
 
 $warehouseManager->addWarehouse($warehouse);
 $warehouseManager->addWarehouse($warehouse2);
