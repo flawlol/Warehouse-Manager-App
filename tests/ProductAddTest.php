@@ -46,10 +46,10 @@ final class ProductAddTest extends TestCase
 
         // WHEN
         $manager->addWarehouse($warehouse);
-        $manager->addProductToWarehouses($product)
+        $manager->addProduct($product)
             ->removeProductFromWarehouse($product)
-            ->addProductToWarehouses($product2)
-            ->addProductToWarehouses($product3);
+            ->addProduct($product2)
+            ->addProduct($product3);
 
         $manager->removeProductFromWarehouse($product2);
 
@@ -83,9 +83,9 @@ final class ProductAddTest extends TestCase
         $manager->addWarehouse($warehouse);
         $manager->addWarehouse($warehouse2);
         $manager->addWarehouse($warehouse3);
-        $manager->addProductToWarehouses($product)
-            ->addProductToWarehouses($product2)
-            ->addProductToWarehouses($product3);
+        $manager->addProduct($product)
+            ->addProduct($product2)
+            ->addProduct($product3);
 
         $getWarehouse = $manager->getWarehouse($warehouse);
         $getWarehouse2 = $manager->getWarehouse($warehouse);
@@ -118,7 +118,7 @@ final class ProductAddTest extends TestCase
 
         // THEN
         $this->expectException(NoAvailableWarehouseException::class);
-        $manager->addProductToWarehouses($product)->addProductToWarehouses($product2);
-        $manager->addProductToWarehouses($product3);
+        $manager->addProduct($product)->addProduct($product2);
+        $manager->addProduct($product3);
     }
 }

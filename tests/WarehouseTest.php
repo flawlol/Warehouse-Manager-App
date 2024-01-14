@@ -88,9 +88,9 @@ final class WarehouseTest extends TestCase
         // WHEN
         $manager->addWarehouse($warehouse)->addWarehouse($warehouse2);
 
-        $manager->addProductToWarehouses($product)
-            ->addProductToWarehouses($product2)
-            ->addProductToWarehouses($product3);
+        $manager->addProduct($product)
+            ->addProduct($product2)
+            ->addProduct($product3);
 
         $countWarehouse = $warehouse->countInventory();
         $countWarehouse2 = $warehouse2->countInventory();

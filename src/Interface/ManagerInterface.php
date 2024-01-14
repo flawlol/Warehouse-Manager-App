@@ -9,7 +9,7 @@ interface ManagerInterface
 {
     public function addWarehouse(Warehouse $warehouse): self;
     public function removeWarehouse(Warehouse $warehouse): void;
-    public function addProductToWarehouses(Product $product): self;
+    public function addProduct(Product $product): self;
     public function getWarehouse(Warehouse $warehouse): Warehouse;
     public function getWarehouses(): array;
     public function countWarehouses(): int;

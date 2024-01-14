@@ -58,10 +58,10 @@ $warehouseManager->addWarehouse($warehouse2);
 
 /** Termékek hozzáadása a raktárhoz. */
 try {
-    $warehouseManager->addProductToWarehouses($product);
-    $warehouseManager->addProductToWarehouses($product2);
-    $warehouseManager->addProductToWarehouses($product3);
-    $warehouseManager->addProductToWarehouses($product4);
+    $warehouseManager->addProduct($product);
+    $warehouseManager->addProduct($product2);
+    $warehouseManager->addProduct($product3);
+    $warehouseManager->addProduct($product4);
 } catch (NoAvailableWarehouseException $e) {
     dd($e);
 }

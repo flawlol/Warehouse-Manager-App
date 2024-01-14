@@ -38,7 +38,7 @@ class WarehouseManager implements ManagerInterface
     /**
      * @throws NoAvailableWarehouseException
      */
-    public function addProductToWarehouses(Product $product): self
+    public function addProduct(Product $product): self
     {
         return $this->warehouseService->addProductToWarehouse($this, $product);
     }
