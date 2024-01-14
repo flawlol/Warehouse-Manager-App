@@ -14,7 +14,7 @@ class KeyboardBuilder extends AbstractBuilder
         return $this->isMechanical;
     }
 
-    public function setIsMechanical(int $isMechanical): self
+    public function setIsMechanical(bool $isMechanical): self
     {
         $this->isMechanical = $isMechanical;
 
