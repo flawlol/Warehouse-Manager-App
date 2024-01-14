@@ -51,15 +51,17 @@ final class ProductAddTest extends TestCase
             ->addProduct($product2)
             ->addProduct($product3);
 
+
         $manager->removeProductFromWarehouse($product2);
 
         // THEN
         $warehouse = $manager->getWarehouse($warehouse);
-        $count = $warehouse->countInventory();
+
         $this->assertNotContains($product, $warehouse->listInventory());
         $this->assertNotContains($product2, $warehouse->listInventory());
         $this->assertContains($product3, $warehouse->listInventory());
-        $this->assertCount($count, $warehouse->listInventory());
+        $this->assertCount(1, $warehouse->listInventory());
+        $this->assertNotCount(2, $warehouse->listInventory());
     }
 
     public function testShouldBeAbleToAddProductToWarehouse(): void
@@ -88,14 +90,16 @@ final class ProductAddTest extends TestCase
             ->addProduct($product3);
 
         $getWarehouse = $manager->getWarehouse($warehouse);
-        $getWarehouse2 = $manager->getWarehouse($warehouse);
-        $getWarehouse3 = $manager->getWarehouse($warehouse);
+        $getWarehouse2 = $manager->getWarehouse($warehouse2);
+        $getWarehouse3 = $manager->getWarehouse($warehouse3);
 
         // THEN
         $this->assertContains($product, $getWarehouse->listInventory());
-        $this->assertCount($getWarehouse->countInventory(), $getWarehouse->listInventory());
-        $this->assertCount($getWarehouse2->countInventory(), $getWarehouse->listInventory());
-        $this->assertCount($getWarehouse3->countInventory(), $getWarehouse->listInventory());
+        $this->assertCount(1, $getWarehouse->listInventory());
+        $this->assertCount(2, $getWarehouse2->listInventory());
+        $this->assertCount(0, $getWarehouse3->listInventory());
+        $this->assertContains($product2, $getWarehouse2->listInventory());
+        $this->assertContains($product3, $getWarehouse2->listInventory());
     }
 
     public function testShouldThrowExceptionDueToNoCapacity(): void
@@ -120,5 +124,8 @@ final class ProductAddTest extends TestCase
         $this->expectException(NoAvailableWarehouseException::class);
         $manager->addProduct($product)->addProduct($product2);
         $manager->addProduct($product3);
+        $this->assertContains($product, $warehouse->listInventory());
+        $this->assertContains($product2, $warehouse->listInventory());
+        $this->assertNotContains($product3, $warehouse->listInventory());
     }
 }

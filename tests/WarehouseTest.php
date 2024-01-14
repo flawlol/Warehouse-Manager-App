@@ -35,16 +35,17 @@ final class WarehouseTest extends TestCase
         $manager = $container->get(ManagerInterface::class);
         $warehouse = $this->createWarehouse();
         $warehouse2 = $this->createWarehouse();
+        $count = $manager->countWarehouses();
 
         // WHEN
         $manager->addWarehouse($warehouse);
-        $count = $manager->countWarehouses();
 
         // THEN
         $warehouses = $manager->getWarehouses();
-        $this->assertCount($count, $warehouses);
+        $this->assertNotCount($count, $warehouses);
         $this->assertContains($warehouse, $warehouses);
         $this->assertNotContains($warehouse2, $warehouses);
+        $this->assertCount(1, $warehouses);
     }
 
     public function testShouldBeAbleToRemoveWarehouseFromManager(): void
@@ -57,6 +58,7 @@ final class WarehouseTest extends TestCase
         $warehouse = $this->createWarehouse();
         $warehouse2 = $this->createWarehouse();
         $warehouse3 = $this->createWarehouse();
+        $count = $manager->countWarehouses();
 
         // WHEN
         $manager->addWarehouse($warehouse)->addWarehouse($warehouse2)->addWarehouse($warehouse3);
@@ -66,6 +68,9 @@ final class WarehouseTest extends TestCase
         // THEN
         $this->assertNotCount($count, $manager->getWarehouses());
         $this->assertNotContains($warehouse, $manager->getWarehouses());
+        $this->assertContains($warehouse2, $manager->getWarehouses());
+        $this->assertContains($warehouse3, $manager->getWarehouses());
+        $this->assertCount(2, $manager->getWarehouses());
     }
 
     public function testShouldBeAbleToRemoveProductsFromMultipleWarehouse(): void
