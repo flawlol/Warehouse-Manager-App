@@ -12,6 +12,11 @@ class ContainerBuilder implements ContainerInterface
     protected array $providers = [];
     private array $reflections = [];
 
+    private function __construct()
+    {
+
+    }
+
     public static function getInstance(): self
     {
         static $instance;
