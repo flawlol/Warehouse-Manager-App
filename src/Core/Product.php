@@ -6,7 +6,12 @@ use Webdream\Warehouse\Interface\FactoryCreatable;
 
 class Product implements FactoryCreatable
 {
-    public function __construct(private string $sku, private string $name, private int $price, private Brand $brand)
+    protected function __construct(
+        protected string $sku,
+        protected string $name,
+        protected int $price,
+        protected Brand $brand
+    )
     {
 
     }
