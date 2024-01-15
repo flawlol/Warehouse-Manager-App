@@ -25,8 +25,9 @@ class WarehouseService
 
     public function addProductToWarehouse(WarehouseManager $warehouseManager, Product $product): ManagerInterface
     {
-        /** @var Warehouse $warehouse */
-        foreach ($warehouseManager->getWarehouses() as $warehouse) {
+        /** @var Warehouse[] $warehouses */
+        $warehouses = $warehouseManager->getWarehouses();
+        foreach ($warehouses as $warehouse) {
             if ($warehouse->hasCapacity()) {
                 $warehouse->addProduct($product);
 

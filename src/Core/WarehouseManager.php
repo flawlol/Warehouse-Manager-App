@@ -60,8 +60,10 @@ class WarehouseManager implements ManagerInterface
 
     public function removeProductFromWarehouse(Product $product): self
     {
-        /** @var Warehouse $warehouse */
-        foreach ($this->warehouses as $warehouse)
+        /** @var Warehouse[] $warehouses*/
+        $warehouses = $this->getWarehouses();
+        
+        foreach ($warehouses as $warehouse)
         {
             if ($warehouse->hasItem($product)) {
                 $warehouse->removeProductFromInventory($product);
