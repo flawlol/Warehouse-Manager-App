@@ -12,9 +12,21 @@ class CPU extends Product
         protected string $name,
         protected int $price,
         protected Brand $brand,
-        protected readonly int $warrantyPeriod
+        private int $warrantyPeriod
     )
     {
         parent::__construct($sku, $name, $price, $brand);
+    }
+
+    public function getWarrantyPeriod(): int
+    {
+        return $this->warrantyPeriod;
+    }
+
+    public function setWarrantyPeriod(int $warrantyPeriod): self
+    {
+        $this->warrantyPeriod = $warrantyPeriod;
+
+        return $this;
     }
 }

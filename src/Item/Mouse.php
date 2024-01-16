@@ -12,9 +12,19 @@ class Mouse extends Product
         protected string $name,
         protected int $price,
         protected Brand $brand,
-        protected readonly int $dpi
+        private int $dpi
     )
     {
         parent::__construct($sku, $name, $price, $brand);
+    }
+
+    public function getDpi(): int
+    {
+        return $this->dpi;
+    }
+
+    public function setDpi(int $dpi): void
+    {
+        $this->dpi = $dpi;
     }
 }
